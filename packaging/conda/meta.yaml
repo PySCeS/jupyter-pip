@@ -1,0 +1,39 @@
+{% set name = "jupyter-pip" %}
+{% set version = "0.3.1" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: bd25e86c2199527c7a265aaaa3f258ca5f9d314ed8508cc4e173672dc03e5070
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - jupyterpip
+
+about:
+  home: "https://github.com/jdfreder/jupyter-pip"
+  license: New BSD
+  license_family: BSD
+  license_file: 
+  summary: "Allows IPython notebook extension authors to make their extension pip installable!"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - jmrohwer
